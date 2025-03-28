@@ -2,8 +2,8 @@ public class Coffee extends Item {
     private Item extra1;
     private Item extra2;
 
-    public Coffee(String size, double price) {
-        super("Coffee", size, price);
+    public Coffee(String name, String size, double price) {
+        super(name, size, price);
     }
 
     @Override
