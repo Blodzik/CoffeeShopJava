@@ -1,9 +1,11 @@
 public class Coffee extends Item {
     private Item extra1;
     private Item extra2;
+    private CoffeeType type;
 
-    public Coffee(String name, String size, double price) {
-        super(name, size, price);
+    public Coffee(CoffeeType type, String size) {
+        super(type.name(), size, type.getPrice());
+        this.type = type;
     }
 
     @Override
@@ -32,7 +34,7 @@ public class Coffee extends Item {
     }
 
     public void printItemizedList() {
-        printItem("Regular Coffee", 1.50);
+        printItem(getName(), getBasePrice());
         if(extra1 != null) {
             extra1.printItem();
         }

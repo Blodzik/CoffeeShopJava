@@ -2,14 +2,12 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-//        Coffee coffee = new Coffee("Espresso","Large", 1.5);
-//        coffee.addToppings("Sugar", "Milk");
-//        coffee.printItem();
+        CoffeeOrder order1 = new CoffeeOrder(CoffeeType.LATTE, "Large", SideType.APPLE_PIE);
+        order1.addCoffeeTopings("Sugar", "");
+        order1.printItemizedList();
 
-        CoffeeOrder coffeeOrder = new CoffeeOrder("Espresso", "Medium", "Apple Pie");
-        coffeeOrder.addCoffeeTopings("Milk", "Brown Sugar");
-        coffeeOrder.printItemizedList();
-
-
+        CoffeeOrder order2 = new CoffeeOrder(CoffeeType.DOPIO, "Medium", SideType.CROISSANT);
+        order2.addCoffeeTopings("Brown Sugar", "");
+        order2.printItemizedList();
     }
 }
