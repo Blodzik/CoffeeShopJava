@@ -17,11 +17,17 @@ public abstract class Drink extends Item {
     public double getAdjustedPrice() {
         return super.getBasePrice() +
                 (extra1 == null ? 0 : extra1.getAdjustedPrice()) +
-                (extra2 == null ? 0 : extra2.getAdjustedPrice());
+                (extra2 == null ? 0 : extra2.getAdjustedPrice()) +
+                (switch (super.getSize().toUpperCase()) {
+                    case "LARGE" -> 1.0;
+                    case "SMALL" -> -0.5;
+                    default -> 0;
+                });
     }
 
+
     public void printItemizedList() {
-        printItem(getName(), getBasePrice());
+        printItem(getName(), getBasePrice(), getSize());
         if(extra1 != null) {
             extra1.printItem();
         }

@@ -20,11 +20,4 @@ public class Tea extends Drink{
             default -> 0;
         };
     }
-
-    @Override
-    public void printItem() {
-        printItemizedList();
-        System.out.println("-".repeat(30));
-        Item.printItem("Total " + getName(), getAdjustedPrice());
-    }
 }

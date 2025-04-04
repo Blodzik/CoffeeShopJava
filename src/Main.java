@@ -2,7 +2,7 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        CoffeeOrder order1 = new CoffeeOrder(CoffeeType.LATTE, "Large", SideType.APPLE_PIE);
+        CoffeeOrder order1 = new CoffeeOrder(CoffeeType.LATTE, "Small", SideType.APPLE_PIE);
         order1.addCoffeeTopings("Sugar", "");
         order1.printItemizedCoffeeList();
 

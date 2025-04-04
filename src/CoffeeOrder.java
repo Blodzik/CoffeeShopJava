@@ -26,7 +26,7 @@ public class CoffeeOrder {
         coffee.printItem();
         side.printItem();
         System.out.println("-".repeat(30));
-        Item.printItem("Total Price", getTotalCoffeePrice());
+        Item.printItem("Total Price", getTotalCoffeePrice(), coffee.getSize());
         System.out.println("-".repeat(30));
     }
 
@@ -34,7 +34,7 @@ public class CoffeeOrder {
         tea.printItem();
         side.printItem();
         System.out.println("-".repeat(30));
-        Item.printItem("Total Price", getTotalTeaPrice());
+        Item.printItem("Total Price", getTotalTeaPrice(), tea.getSize());
         System.out.println("-".repeat(30));
     }
 

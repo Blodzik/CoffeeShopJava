@@ -33,11 +33,11 @@ public class Item {
         this.size = size.toUpperCase();
     }
 
-    public static void printItem(String name, double price) {
-        System.out.printf("%20s:%6.2f%n", name, price);
+    public static void printItem(String name, double price, String size) {
+        System.out.printf("%10s (%s): %6.2f%n", name, size, price);
     }
 
     public void printItem() {
-        printItem(getName(), getAdjustedPrice());
+        printItem(getName(), getAdjustedPrice(), getSize());
     }
 }
