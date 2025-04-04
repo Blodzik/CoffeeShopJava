@@ -6,7 +6,7 @@ public class Main {
         order1.addCoffeeTopings("Sugar", "");
         order1.printItemizedCoffeeList();
 
-        CoffeeOrder order2 = new CoffeeOrder(CoffeeType.DOPIO, "Medium", SideType.CROISSANT);
+        CoffeeOrder order2 = new CoffeeOrder(CoffeeType.DOPPIO, "Medium", SideType.CROISSANT);
         order2.addCoffeeTopings("Brown Sugar", "");
         order2.printItemizedCoffeeList();
 
