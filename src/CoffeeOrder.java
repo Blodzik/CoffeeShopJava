@@ -1,5 +1,6 @@
 public class CoffeeOrder {
     private Coffee coffee;
+    private Tea tea;
 
     private Item side;
 
@@ -8,15 +9,32 @@ public class CoffeeOrder {
         this.side = new Item(sideType.name(), "-", sideType.getPrice());
     }
 
-    public double getTotalPrice() {
+    public CoffeeOrder(TeaType teaType, String size, SideType sideType) {
+        this.tea = new Tea(teaType, size);
+        this.side = new Item(sideType.name(), "-", sideType.getPrice());
+    }
+
+    public double getTotalCoffeePrice() {
         return coffee.getAdjustedPrice() + side.getAdjustedPrice();
     }
 
-    public void printItemizedList() {
+    public double getTotalTeaPrice() {
+        return tea.getAdjustedPrice() + side.getAdjustedPrice();
+    }
+
+    public void printItemizedCoffeeList() {
         coffee.printItem();
         side.printItem();
         System.out.println("-".repeat(30));
-        Item.printItem("Total Price", getTotalPrice());
+        Item.printItem("Total Price", getTotalCoffeePrice());
+        System.out.println("-".repeat(30));
+    }
+
+    public void printItemizedTeaList() {
+        tea.printItem();
+        side.printItem();
+        System.out.println("-".repeat(30));
+        Item.printItem("Total Price", getTotalTeaPrice());
         System.out.println("-".repeat(30));
     }
 
@@ -24,8 +42,16 @@ public class CoffeeOrder {
         coffee.addToppings(extra1, extra2);
     }
 
+    public void addTeaToppings(String extra1, String extra2) {
+        tea.addToppings(extra1, extra2);
+    }
+
     public void setCoffeeSize(String size) {
         coffee.setSize(size);
+    }
+
+    public void setTeaSize(String size) {
+        tea.setSize(size);
     }
 
 }
