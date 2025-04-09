@@ -40,4 +40,14 @@ public class Item {
     public void printItem() {
         printItem(getName(), getAdjustedPrice(), getSize());
     }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public String getDescription() {
+        return name;
+    }
+
+
 }

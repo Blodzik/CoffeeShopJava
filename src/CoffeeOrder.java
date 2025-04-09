@@ -54,4 +54,16 @@ public class CoffeeOrder {
         tea.setSize(size);
     }
 
+    public Coffee getCoffee() {
+        return coffee;
+    }
+
+    public Tea getTea() {
+        return tea;
+    }
+
+    public Item getSide() {
+        return side;
+    }
+
 }

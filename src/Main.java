@@ -14,5 +14,12 @@ public class Main {
        CoffeeOrder order3 = new CoffeeOrder(TeaType.BLACK_TEA, "Medium", SideType.APPLE_PIE);
        order3.addTeaToppings("LEMON", "HONEY");
        order3.printItemizedTeaList();
+
+       Item item = new Item("name", "small", 4.5);
+
+       Order order = new Order();
+       order.addCoffeeOrder(order1);
+       order.addCoffeeOrder(order2);
+       order.printSummary();
     }
 }
