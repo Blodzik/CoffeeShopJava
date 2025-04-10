@@ -15,7 +15,7 @@ public class Order {
         return items;
     }
 
-    public void addCoffeeOrder(CoffeeOrder coffeeOrder) {
+    public void addBeverageOrder(BeverageOrder coffeeOrder) {
         items.add(coffeeOrder.getCoffee());
         items.add(coffeeOrder.getSide());
     }

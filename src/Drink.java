@@ -41,6 +41,6 @@ public abstract class Drink extends Item {
     public void printItem() {
         printItemizedList();
         System.out.println("-".repeat(30));
-        super.printItem();
+        //super.printItem();
     }
 }
