@@ -3,6 +3,7 @@ public class Item {
     private String size;
     private double price;
 
+
     public Item(String name, String size, double price) {
         this.name = name.toUpperCase();
         this.size = size.toUpperCase();
@@ -47,6 +48,10 @@ public class Item {
 
     public String getDescription() {
         return name;
+    }
+
+    public String getLabel() {
+        return String.format("%s (%s)", name, size);
     }
 
 

@@ -22,12 +22,12 @@ public class Main {
        order.printSummary();
 
        BeverageOrder order5 = new BeverageOrder();
-       order5.addCoffee(CoffeeType.DOPPIO,  "small");
+       order5.addCoffee(CoffeeType.DOPPIO,  "small", 2);
        //order5.addCoffeeTopings("Sugar", "Milk");
-       order5.addCoffee(CoffeeType.LATTE, "large");
+       order5.addCoffee(CoffeeType.LATTE, "large", 3);
        order5.addTea(TeaType.BLACK_TEA, "small");
        //order5.addTeaToppings("LEMON", "HONEY");
-       order5.addSide(SideType.APPLE_PIE);
+       order5.addSide(SideType.APPLE_PIE, 2);
        order5.printItemizedOrder();
     }
 }

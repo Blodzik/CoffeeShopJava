@@ -1,11 +1,15 @@
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BeverageOrder {
     private Coffee coffee;
     private Tea tea;
 
     private Item side;
+
+    private int quantity = 1;
 
     private List<Drink> drinks;
     private List<Item> sides;
@@ -30,14 +34,35 @@ public class BeverageOrder {
         drinks.add(coffee);
     }
 
+    public void addCoffee(CoffeeType type, String size, int quantity) {
+        for(int i = 0; i < quantity; i++) {
+            Coffee coffee = new Coffee(type, size);
+            drinks.add(coffee);
+        }
+    }
+
     public void addTea(TeaType type, String size) {
         Tea tea = new Tea(type, size);
         drinks.add(tea);
     }
 
+    public void addTea(TeaType type, String size, int quantity) {
+        for(int i = 0; i < quantity; i++) {
+            Tea tea = new Tea(type, size);
+            drinks.add(tea);
+        }
+    }
+
     public void addSide(SideType type) {
         Item side = new Item(type.name(), "-", type.getPrice());
         sides.add(side);
+    }
+
+    public void addSide(SideType type, int quantity) {
+        for (int i = 0; i < quantity; i++) {
+            Item side = new Item(type.name(), "-", type.getPrice());
+            sides.add(side);
+        }
     }
 
     public double getTotalCoffeePrice() {
@@ -69,16 +94,45 @@ public class BeverageOrder {
 
     public void printItemizedOrder() {
         System.out.println("\n========= ORDER =========");
-        for (Drink drink : drinks) {
-            drink.printItem();
+        Map<String, Integer> itemCounts = new LinkedHashMap<>();
+        Map<String, Double> itemPrices = new LinkedHashMap<>();
+
+        for(Drink drink : drinks) {
+            String label = drink.getLabel();
+            double price = drink.getAdjustedPrice();
+
+            itemCounts.put(label, itemCounts.getOrDefault(label, 0) + 1);
+            itemPrices.put(label, price);
         }
+
         for (Item side : sides) {
-            side.printItem();
+            String label = side.getLabel();
+            double price = side.getAdjustedPrice();
+
+            itemCounts.put(label, itemCounts.getOrDefault(label, 0) + 1);
+            itemPrices.put(label, price);
         }
+
+        double total = 0;
+
+        for (String label : itemCounts.keySet()) {
+            int qty = itemCounts.get(label);
+            double price = itemPrices.get(label);
+            double subtotal = price * qty;
+            total += subtotal;
+
+            if (qty > 1) {
+                System.out.printf("%s: %.2f x%d = %.2f\n", label, price, qty, subtotal);
+            } else {
+                System.out.printf("%s: %.2f\n", label, price);
+            }
+        }
+
         System.out.println("----------------------------");
-        Item.printItem("Total Price", getTotalPrice(), "-");
+        Item.printItem("Total Price", total, "-");
         System.out.println("============================\n");
     }
+
 
     public void printItemizedCoffeeList() {
         printItemizedList(coffee, getTotalCoffeePrice(), coffee.getSize());
