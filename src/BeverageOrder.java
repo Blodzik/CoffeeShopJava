@@ -2,8 +2,12 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class BeverageOrder {
+
+    private static int orderCounter = 1;
     private Coffee coffee;
     private Tea tea;
 
@@ -93,7 +97,17 @@ public class BeverageOrder {
     }
 
     public void printItemizedOrder() {
+        String orderNumber = String.format("%05d", orderCounter++);
+        String timeStamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+
+        double taxRate = 0.07;
+        double tipRate = 0.1;
+
         System.out.println("\n========= ORDER =========");
+        System.out.println("Order: " + orderNumber);
+        System.out.println("Time: " + timeStamp);
+        System.out.println("----------------------------");
+
         Map<String, Integer> itemCounts = new LinkedHashMap<>();
         Map<String, Double> itemPrices = new LinkedHashMap<>();
 
@@ -113,23 +127,30 @@ public class BeverageOrder {
             itemPrices.put(label, price);
         }
 
-        double total = 0;
+        double subtotal = 0;
 
         for (String label : itemCounts.keySet()) {
             int qty = itemCounts.get(label);
             double price = itemPrices.get(label);
-            double subtotal = price * qty;
-            total += subtotal;
+            double itemTotal = price * qty;
+            subtotal += itemTotal;
 
             if (qty > 1) {
-                System.out.printf("%s: %.2f x%d = %.2f\n", label, price, qty, subtotal);
+                System.out.printf("%s: %.2f x%d = %.2f\n", label, price, qty, itemTotal);
             } else {
                 System.out.printf("%s: %.2f\n", label, price);
             }
         }
 
+        double tax = subtotal * taxRate;
+        double tip = subtotal * tipRate;
+        double total = subtotal + tax + tip;
+
         System.out.println("----------------------------");
-        Item.printItem("Total Price", total, "-");
+        System.out.printf("Subtotal:      %.2f\n", subtotal);
+        System.out.printf("Tax (7%%):      %.2f\n", tax);
+        System.out.printf("Tip (15%%):     %.2f\n", tip);
+        System.out.printf("TOTAL:         %.2f\n", total);
         System.out.println("============================\n");
     }
 
