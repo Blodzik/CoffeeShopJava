@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -29,5 +31,31 @@ public class Main {
        //order5.addTeaToppings("LEMON", "HONEY");
        order5.addSide(SideType.APPLE_PIE, 2);
        order5.printItemizedOrder();
+
+       Scanner scanner = new Scanner(System.in);
+       System.out.print("Enter payment method (card/cash): ");
+       String method = scanner.nextLine().toUpperCase();
+
+       Payment payment = null;
+
+       double totalAmount = order5.getTotalPrice();
+
+       if(method.equals("CASH")) {
+           System.out.print("Enter cash received: ");
+           double cash = scanner.nextDouble();
+           payment = new CashPayment(totalAmount, cash);
+       } else if (method.equals("CARD")) {
+           Card userCard = new Card("1234-5678", 10.00);
+           payment = new CardPayment(totalAmount, userCard);
+       } else {
+           System.out.println("Invalid payment method");
+           return;
+       }
+
+       if (payment.process()) {
+           System.out.println("🎉 Thank you for your order!");
+       } else {
+           System.out.println("❌ Payment failed. Please try again.");
+       }
     }
 }
